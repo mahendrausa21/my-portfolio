@@ -168,7 +168,7 @@ a:hover{
 input{
 	min-height: 50px !important;
 }
-@media (max-width: 600px){ 
+@media (max-width: 590px){ 
     .left-col-block { 
         width: 100%; 
         position: relative; 
