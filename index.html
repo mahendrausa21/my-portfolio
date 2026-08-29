@@ -1,380 +1,930 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Mahendra Usirikayala - Java Backend Developer</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahendra - Java Backend Developer | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --dark-bg: #0f172a;
+            --light-bg: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 100px 2rem;
+            text-align: center;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 50%;
+            bottom: -50px;
+            left: -50px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            animation: slideInUp 0.8s ease;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero .title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: var(--dark-bg);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ==================== SECTION STYLES ==================== */
+        section {
+            padding: 80px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* ==================== ABOUT SECTION ==================== */
+        .about {
+            background: var(--light-bg);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .about-highlight {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .about-highlight h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* ==================== SKILLS SECTION ==================== */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--primary-color);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .skill-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .skill-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        /* ==================== PROJECTS SECTION ==================== */
+        .projects {
+            background: var(--light-bg);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.2);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-card h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .project-body {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-body p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            flex: 1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--accent-color);
+            gap: 1rem;
+        }
+
+        /* ==================== EDUCATION SECTION ==================== */
+        .education {
+            background: white;
+        }
+
+        .education-content {
+            margin-top: 3rem;
+        }
+
+        .education-item {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
+            transform: translateX(5px);
+        }
+
+        .education-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .education-meta {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .cgpa {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* ==================== CERTIFICATIONS SECTION ==================== */
+        .certifications {
+            background: var(--light-bg);
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cert-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.2);
+        }
+
+        .cert-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-card h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cert-issuer {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* ==================== CONTACT SECTION ==================== */
+        .contact {
+            background: linear-gradient(135deg, var(--dark-bg), var(--primary-color));
+            color: white;
+            text-align: center;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-box:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .contact-box h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-box p,
+        .contact-box a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-box a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .social-link:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: var(--dark-bg);
+            transform: translateY(-5px);
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .title {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .skills-container,
+            .projects-grid,
+            .certifications-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                gap: 1rem;
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">MA</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Get In Touch</a>
+        </div>
+    </nav>
 
-<body>
-<!-- Navigation -->
-<nav class="navbar navbar-dark navbar-expand-lg sticky-top">
-	<div class="container">
-		<a class="navbar-brand" href="#home">Mahendra</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-				<li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-				<li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-				<li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
-				<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-			</ul>
-		</div>
-	</div>
-</nav>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>USIRIKAYALA MAHENDRA</h1>
+            <div class="title">Java Backend Developer | Spring Boot | AWS</div>
+            <p>Building scalable, high-performance backend solutions with modern technologies. Passionate about clean code, system design, and solving complex problems.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">📍 Tirupati, AP</div>
+                <div class="contact-item">📱 8639417027</div>
+                <div class="contact-item">✉️ mahendrausirikayala@gmail.com</div>
+            </div>
 
-<!-- Hero Section -->
-<section id="home" class="hero-section">
-	<div class="container h-100">
-		<div class="row h-100 align-items-center">
-			<div class="col-lg-8">
-				<h1 class="display-4 fw-bold">Mahendra Usirikayala</h1>
-				<p class="lead accent-color">Java Backend Developer | Spring Boot | Full-Stack Engineer</p>
-				<p class="subtitle">B.Tech CSE (AI & ML) • Building scalable backend systems & REST APIs</p>
-				<div class="social-links mt-4">
-					<a href="https://github.com/mahendrausa21" target="_blank" class="social-btn">
-						<i class="fab fa-github"></i>
-					</a>
-					<a href="https://www.linkedin.com/in/mahendra-usirikayala-6432a71b0/" target="_blank" class="social-btn">
-						<i class="fab fa-linkedin"></i>
-					</a>
-					<a href="mailto:mahendrausirikayala@gmail.com" class="social-btn">
-						<i class="fas fa-envelope"></i>
-					</a>
-				</div>
-				<div class="mt-5">
-					<a href="#about" class="cta-button">View My Work</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn-primary">View My Work</a>
+                <a href="#contact" class="btn-secondary">Let's Connect</a>
+            </div>
+        </div>
+    </section>
 
-<!-- About Section -->
-<section id="about" class="section py-5">
-	<div class="container">
-		<h2 class="section-title">About Me</h2>
-		<div class="row">
-			<div class="col-lg-10">
-				<p class="section-text">
-					I'm a B.Tech CSE undergraduate specializing in AI & ML at Mohan Babu University. I have hands-on experience building production-style full-stack web applications using <strong>Java, Spring Boot, Spring MVC, JSP/Servlets, and MySQL</strong>.
-				</p>
-				<p class="section-text">
-					I've completed <strong>4 end-to-end projects</strong> ranging from a Swiggy/Zomato-style food delivery app to a multi-role Learning Management System. My expertise includes <strong>MVC architecture, DAO patterns, REST APIs, Spring Data JPA, and enterprise Java patterns</strong>.
-				</p>
-				<p class="section-text">
-					I'm actively seeking a backend/full-stack internship role where I can contribute immediately and continue growing within a professional engineering team.
-				</p>
-				<div class="contact-info mt-4">
-					<p><i class="fas fa-map-marker-alt accent-color"></i> <strong>Location:</strong> Tirupati, Andhra Pradesh</p>
-					<p><i class="fas fa-phone accent-color"></i> <strong>Phone:</strong> +91 8639417027</p>
-					<p><i class="fas fa-envelope accent-color"></i> <strong>Email:</strong> mahendrausirikayala@gmail.com</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm a passionate Java Backend Developer with hands-on experience in building scalable, full-stack applications using Spring Boot, REST APIs, and AWS. My journey in software development has equipped me with strong foundations in Object-Oriented Programming, Data Structures & Algorithms, and database design.</p>
+                <p>With experience in architecting multi-role systems, implementing security protocols, and deploying applications on cloud platforms, I'm committed to delivering high-impact solutions that solve real-world problems.</p>
+                <p>I thrive in collaborative environments where I can leverage my problem-solving skills, analytical thinking, and adaptability to contribute meaningfully to innovative software engineering teams.</p>
+            </div>
+            <div class="about-highlight">
+                <h3>Quick Facts</h3>
+                <ul class="skill-list">
+                    <li>4+ years of academic & practical experience</li>
+                    <li>Expertise in Spring Boot & microservices</li>
+                    <li>AWS certified cloud practitioner</li>
+                    <li>Strong DSA & database design fundamentals</li>
+                    <li>Full-stack capabilities with modern web tech</li>
+                    <li>Passionate about clean code & best practices</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-<!-- Skills Section -->
-<section id="skills" class="section bg-light py-5">
-	<div class="container">
-		<h2 class="section-title">Technical Skills</h2>
-		<div class="row">
-			<div class="col-md-6 mb-4">
-				<div class="skill-card">
-					<h4 class="skill-category"><i class="fas fa-code accent-color"></i> Languages</h4>
-					<div class="skill-tags">
-						<span class="skill-tag">Java (OOP, DSA, JDBC)</span>
-						<span class="skill-tag">Python</span>
-						<span class="skill-tag">JavaScript</span>
-						<span class="skill-tag">SQL</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 mb-4">
-				<div class="skill-card">
-					<h4 class="skill-category"><i class="fas fa-layer-group accent-color"></i> Frameworks</h4>
-					<div class="skill-tags">
-						<span class="skill-tag">Spring Boot</span>
-						<span class="skill-tag">Spring MVC</span>
-						<span class="skill-tag">Spring Data JPA</span>
-						<span class="skill-tag">Hibernate</span>
-						<span class="skill-tag">JSP/Servlets</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 mb-4">
-				<div class="skill-card">
-					<h4 class="skill-category"><i class="fas fa-database accent-color"></i> Databases</h4>
-					<div class="skill-tags">
-						<span class="skill-tag">MySQL</span>
-						<span class="skill-tag">CRUD Operations</span>
-						<span class="skill-tag">JPA Entity Relations</span>
-						<span class="skill-tag">Query Optimization</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 mb-4">
-				<div class="skill-card">
-					<h4 class="skill-category"><i class="fas fa-globe accent-color"></i> Web & Tools</h4>
-					<div class="skill-tags">
-						<span class="skill-tag">HTML5</span>
-						<span class="skill-tag">CSS3</span>
-						<span class="skill-tag">Bootstrap</span>
-						<span class="skill-tag">Thymeleaf</span>
-						<span class="skill-tag">Maven</span>
-						<span class="skill-tag">Git/GitHub</span>
-						<span class="skill-tag">Apache Tomcat</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+    <!-- SKILLS SECTION -->
+    <section class="skills" id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <h3>Programming Languages</h3>
+                <ul class="skill-list">
+                    <li>Java (OOP, JDBC, DSA)</li>
+                    <li>SQL & Query Optimization</li>
+                    <li>JavaScript</li>
+                    <li>Python</li>
+                </ul>
+            </div>
 
-<!-- Projects Section -->
-<section id="projects" class="section py-5">
-	<div class="container">
-		<h2 class="section-title">Featured Projects</h2>
-		<div class="row g-4">
-			<!-- Project 1: LMS -->
-			<div class="col-lg-6">
-				<div class="project-card">
-					<div class="project-header">
-						<h3>Learning Management System</h3>
-						<a href="https://github.com/mahendrausa21/Learning-Management-System" target="_blank" class="project-link">
-							<i class="fab fa-github"></i> View on GitHub
-						</a>
-					</div>
-					<p class="project-tags">
-						<span class="tech-tag">Spring Boot</span>
-						<span class="tech-tag">Spring MVC</span>
-						<span class="tech-tag">Spring Data JPA</span>
-						<span class="tech-tag">Thymeleaf</span>
-						<span class="tech-tag">MySQL</span>
-					</p>
-					<p class="project-description">
-						Architected a multi-role LMS with Student & Teacher dashboards using Spring Boot with strict Controller–Service–Repository layering. Implemented role-based access control enabling teachers to create courses, upload documents, post assignments, and grade submissions.
-					</p>
-					<ul class="project-highlights">
-						<li>Designed MySQL schema with JPA entity relationships (OneToMany, ManyToMany)</li>
-						<li>Built REST endpoints and rendered dynamic pages via Thymeleaf</li>
-						<li>Managed file uploads for course documents using multipart form handling</li>
-						<li>Ensured clean separation of concerns and testability</li>
-					</ul>
-				</div>
-			</div>
+            <div class="skill-card">
+                <h3>Backend Technologies</h3>
+                <ul class="skill-list">
+                    <li>Spring Boot & Spring MVC</li>
+                    <li>Spring Data JPA & Hibernate</li>
+                    <li>REST APIs & Web Services</li>
+                    <li>Servlets & JSP</li>
+                </ul>
+            </div>
 
-			<!-- Project 2: TapFoods -->
-			<div class="col-lg-6">
-				<div class="project-card">
-					<div class="project-header">
-						<h3>TapFoods – Food Delivery App</h3>
-						<a href="https://github.com/mahendrausa21/TapFoods" target="_blank" class="project-link">
-							<i class="fab fa-github"></i> View on GitHub
-						</a>
-					</div>
-					<p class="project-tags">
-						<span class="tech-tag">Java</span>
-						<span class="tech-tag">JSP</span>
-						<span class="tech-tag">Servlets</span>
-						<span class="tech-tag">JDBC</span>
-						<span class="tech-tag">MySQL</span>
-					</p>
-					<p class="project-description">
-						Built a full-featured Swiggy/Zomato-style food delivery platform with user registration, restaurant listing, dynamic menus, cart management, and multi-mode checkout. MVC architecture using Servlets as controllers and JSP for views.
-					</p>
-					<ul class="project-highlights">
-						<li>Implemented session-based authentication and access control</li>
-						<li>Structured code into 4 packages: model, Servlet, Dao, DaoImpl</li>
-						<li>All DB operations via dedicated DAO layer using JDBC</li>
-						<li>Configured Maven and deployed on Apache Tomcat</li>
-					</ul>
-				</div>
-			</div>
+            <div class="skill-card">
+                <h3>Databases & Storage</h3>
+                <ul class="skill-list">
+                    <li>MySQL (CRUD, Joins, Subqueries)</li>
+                    <li>Indexing & Query Optimization</li>
+                    <li>Entity Relationships & Design</li>
+                    <li>AWS S3 & RDS</li>
+                </ul>
+            </div>
 
-			<!-- Project 3: Movie Finder -->
-			<div class="col-lg-6">
-				<div class="project-card">
-					<div class="project-header">
-						<h3>Movie Finder – Theatre Management</h3>
-						<a href="https://github.com/mahendrausa21" target="_blank" class="project-link">
-							<i class="fab fa-github"></i> View on GitHub
-						</a>
-					</div>
-					<p class="project-tags">
-						<span class="tech-tag">Spring Boot</span>
-						<span class="tech-tag">Spring MVC</span>
-						<span class="tech-tag">Spring Data JPA</span>
-						<span class="tech-tag">Thymeleaf</span>
-						<span class="tech-tag">REST API</span>
-					</p>
-					<p class="project-description">
-						Developed a Spring Boot web application to manage movies, theatres, and showtimes, allowing users to search for currently running films and view available show slots.
-					</p>
-					<ul class="project-highlights">
-						<li>Integrated Spring Data JPA with MySQL for CRUD operations</li>
-						<li>Leveraged JPA relationships for efficient data modeling</li>
-						<li>Exposed REST APIs for data retrieval</li>
-						<li>Built responsive UI using Spring MVC + Thymeleaf</li>
-					</ul>
-				</div>
-			</div>
+            <div class="skill-card">
+                <h3>Frontend Technologies</h3>
+                <ul class="skill-list">
+                    <li>HTML5 & CSS3</li>
+                    <li>Bootstrap & Responsive Design</li>
+                    <li>Thymeleaf Template Engine</li>
+                    <li>JSP & Dynamic Content</li>
+                </ul>
+            </div>
 
-			<!-- Project 4: Portfolio -->
-			<div class="col-lg-6">
-				<div class="project-card">
-					<div class="project-header">
-						<h3>Personal Portfolio Website</h3>
-						<a href="https://mahendrausa21.github.io" target="_blank" class="project-link">
-							<i class="fas fa-globe"></i> Visit Live Site
-						</a>
-					</div>
-					<p class="project-tags">
-						<span class="tech-tag">HTML5</span>
-						<span class="tech-tag">CSS3</span>
-						<span class="tech-tag">Bootstrap</span>
-						<span class="tech-tag">GitHub Pages</span>
-					</p>
-					<p class="project-description">
-						Designed and deployed a responsive personal portfolio website showcasing skills, projects, and contact information. Demonstrates front-end development capability and version-controlled deployment workflow.
-					</p>
-					<ul class="project-highlights">
-						<li>Responsive design across all devices</li>
-						<li>Clean, modern UI with Bootstrap</li>
-						<li>Hosted on GitHub Pages for free public accessibility</li>
-						<li>Version-controlled development workflow</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+            <div class="skill-card">
+                <h3>Cloud & DevOps</h3>
+                <ul class="skill-list">
+                    <li>AWS (IAM, EC2, EBS, S3, VPC, RDS)</li>
+                    <li>Maven Build Management</li>
+                    <li>Apache Tomcat Deployment</li>
+                    <li>Cloud Architecture Basics</li>
+                </ul>
+            </div>
 
-<!-- Education Section -->
-<section id="education" class="section bg-light py-5">
-	<div class="container">
-		<h2 class="section-title">Education & Certifications</h2>
-		<div class="row">
-			<div class="col-lg-10">
-				<div class="education-card mb-4">
-					<div class="education-header">
-						<h4>B.Tech – Computer Science & Engineering</h4>
-						<span class="education-duration">2023 – 2027</span>
-					</div>
-					<p class="education-institution">Mohan Babu University, Tirupati, Andhra Pradesh</p>
-					<p class="education-specialization"><strong>Specialization:</strong> AI & Machine Learning</p>
-				</div>
+            <div class="skill-card">
+                <h3>Tools & Professional Skills</h3>
+                <ul class="skill-list">
+                    <li>Git & GitHub Version Control</li>
+                    <li>Eclipse IDE & VS Code</li>
+                    <li>MySQL Workbench</li>
+                    <li>Problem Solving & Team Collaboration</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-				<div class="certifications mt-5">
-					<h4 class="mb-3">Certifications</h4>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="cert-item">
-								<i class="fas fa-certificate accent-color"></i>
-								<span>Machine Learning – SkillForge</span>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="cert-item">
-								<i class="fas fa-certificate accent-color"></i>
-								<span>AI & Cloud Computing – IBM SkillBuild (Edunet)</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+    <!-- PROJECTS SECTION -->
+    <section class="projects" id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Learning Management System (LMS)</h3>
+                    <div class="project-tech">
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">Spring Data JPA</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>A comprehensive full-stack Learning Management System built with Spring Boot and Spring Data JPA. Implemented a multi-role architecture with secure file uploads using BCrypt encryption, role-based access control, and complex entity relationships.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/mahendrausa21/LMS-1.0" class="project-link">View Code →</a>
+                        
+                    </div>
+                </div>
+            </div>
 
-<!-- Why Me Section -->
-<section class="section py-5">
-	<div class="container">
-		<h2 class="section-title">Why Hire Me?</h2>
-		<div class="row">
-			<div class="col-md-6 mb-4">
-				<div class="benefit-card">
-					<div class="benefit-icon">
-						<i class="fas fa-code-branch"></i>
-					</div>
-					<h4>4 Complete Projects</h4>
-					<p>All GitHub-documented and built solo from scratch, covering food-tech, EdTech, entertainment, and personal branding domains.</p>
-				</div>
-			</div>
-			<div class="col-md-6 mb-4">
-				<div class="benefit-card">
-					<div class="benefit-icon">
-						<i class="fas fa-graduation-cap"></i>
-					</div>
-					<h4>Continuous Learning</h4>
-					<p>Progression from raw JEE (JSP/Servlets/JDBC) to modern Spring ecosystem (Boot, JPA, REST) demonstrates rapid, self-driven growth.</p>
-				</div>
-			</div>
-			<div class="col-md-6 mb-4">
-				<div class="benefit-card">
-					<div class="benefit-icon">
-						<i class="fas fa-layer-group"></i>
-					</div>
-					<h4>Enterprise Patterns</h4>
-					<p>Strong grasp of MVC, DAO, layered architecture, session management, and ORM applied in real, production-style codebases.</p>
-				</div>
-			</div>
-			<div class="col-md-6 mb-4">
-				<div class="benefit-card">
-					<div class="benefit-icon">
-						<i class="fas fa-rocket"></i>
-					</div>
-					<h4>Full Dev Cycle</h4>
-					<p>Comfortable with the complete workflow: requirement → design → code → Maven build → Tomcat deployment → GitHub push.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>TapFoods</h3>
+                    <div class="project-tech">
+                        <span class="tech-tag">Java Servlets</span>
+                        <span class="tech-tag">JSP</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>A complete food delivery platform (Swiggy/Zomato clone) featuring session authentication, dynamic menus, cart management, and multi-mode checkout. Built using Servlet controllers with clean MVC architecture and deployed on Apache Tomcat.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/mahendrausa21/TapFoods" class="project-link">View Code →</a>
+                        
+                    </div>
+                </div>
+            </div>
 
-<!-- Contact Section -->
-<section id="contact" class="contact-section py-5">
-	<div class="container">
-		<h2 class="section-title text-white">Let's Work Together</h2>
-		<div class="row justify-content-center">
-			<div class="col-lg-8 text-center">
-				<p class="lead text-white mb-4">I'm actively seeking backend/full-stack internship opportunities. Let's connect!</p>
-				<div class="contact-buttons">
-					<a href="mailto:mahendrausirikayala@gmail.com" class="contact-btn">
-						<i class="fas fa-envelope"></i> Send Email
-					</a>
-					<a href="https://github.com/mahendrausa21" target="_blank" class="contact-btn">
-						<i class="fab fa-github"></i> GitHub
-					</a>
-					<a href="https://www.linkedin.com/in/mahendra-usirikayala-6432a71b0/" target="_blank" class="contact-btn">
-						<i class="fab fa-linkedin"></i> LinkedIn
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Movie Finder</h3>
+                    <div class="project-tech">
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">REST API</span>
+                        <span class="tech-tag">Thymeleaf</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>A Spring Boot application for movie, theatre, and showtime management with REST APIs. Users can search films and browse available show slots across venues. Features responsive frontend with Thymeleaf and optimized database queries with Spring Data JPA.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/mahendrausa21/Movie-Finder" class="project-link">View Code →</a>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Footer -->
-<footer class="footer py-4">
-	<div class="container text-center">
-		<p class="mb-0">&copy; 2024 Mahendra Usirikayala. All rights reserved.</p>
-		<p class="small">Java Backend Developer | Spring Boot | Full-Stack Engineer</p>
-	</div>
-</footer>
+    <!-- EDUCATION SECTION -->
+    <section class="education" id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="education-content">
+            <div class="education-item">
+                <h3>B.Tech in Computer Science & Engineering</h3>
+                <div class="education-meta">
+                    Mohan Babu University, Tirupati, Andhra Pradesh
+                    <br>
+                    2023 – 2027 | <span class="cgpa">CGPA: 9.2</span>
+                </div>
+                <p>Specialization: Artificial Intelligence & Machine Learning</p>
+                <p>Focused coursework in Data Structures, Algorithms, Database Management Systems, Web Development, and Cloud Computing.</p>
+            </div>
+        </div>
+    </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- CERTIFICATIONS SECTION -->
+    <section class="certifications" id="certifications">
+        <h2 class="section-title">Certifications & Training</h2>
+        <div class="certifications-grid">
+            <div class="cert-card">
+                <div class="cert-icon">🎓</div>
+                <h4>MySQL with Spring Boot</h4>
+                <p class="cert-issuer">SkillForge</p>
+            </div>
+
+            <div class="cert-card">
+                <div class="cert-icon">☁️</div>
+                <h4>AWS Cloud Practitioner Essentials</h4>
+                <p class="cert-issuer">Amazon Web Services</p>
+            </div>
+
+            <div class="cert-card">
+                <div class="cert-icon">🤖</div>
+                <h4>AI & Cloud Computing</h4>
+                <p class="cert-issuer">IBM SkillBuild (Edunet)</p>
+            </div>
+
+            <div class="cert-card">
+                <div class="cert-icon">🧠</div>
+                <h4>Machine Learning</h4>
+                <p class="cert-issuer">SkillForge</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+        <h2 class="section-title" style="color: white;">Let's Work Together</h2>
+        <div class="contact-content">
+            <div class="contact-box">
+                <h3>📧 Email</h3>
+                <a href="mailto:mahendrausirikayala@gmail.com">mahendrausirikayala@gmail.com</a>
+            </div>
+
+            <div class="contact-box">
+                <h3>📱 Phone</h3>
+                <a href="tel:+918639417027">+91 8639417027</a>
+            </div>
+
+            <div class="contact-box">
+                <h3>📍 Location</h3>
+                <p>Tirupati, Andhra Pradesh, India</p>
+            </div>
+        </div>
+
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/mahendra-usirikayala-6432a71b0/" class="social-link" title="LinkedIn">in</a>
+            <a href="https://github.com/mahendrausa21" class="social-link" title="GitHub">⚙️</a>
+            <a href="https://twitter.com" class="social-link" title="Twitter">𝕏</a>
+        </div>
+
+        <p style="margin-top: 2rem; opacity: 0.8;">© 2026 Usirikayala Mahendra. All rights reserved.</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Crafted with ❤️ by Mahendra | Java Backend Developer | Spring Boot | AWS</p>
+    </footer>
 </body>
 </html>
-
-
-
-
